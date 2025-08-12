@@ -1,0 +1,4 @@
+.env
+__pycache__/
+voice_agent
+.vscode

@@ -1,0 +1,10 @@
+openai>=1.0.0
+elevenlabs>=0.2.0
+langchain>=0.1.0
+langchain-openai>=0.1.0
+python-dotenv>=1.0.0
+pyaudio>=0.2.11
+pydub>=0.25.1
+sounddevice>=0.4.6
+numpy>=1.24.0
+scipy
