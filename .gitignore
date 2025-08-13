@@ -2,3 +2,4 @@
 __pycache__/
 voice_agent
 .vscode
+user_input.wav

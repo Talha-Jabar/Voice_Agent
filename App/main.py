@@ -1,5 +1,4 @@
 import os
-import time
 from dotenv import load_dotenv
 
 from Core_Functionality.speech_to_text import transcribe_audio
