@@ -23,6 +23,7 @@ A comprehensive Speech-to-Speech AI Voice Agent designed for customer support fo
 
 ```
 ai_voice_agent/
+├──
 ├── main.py                    # Main application entry point
 ├── .env                       # Environment variables (API keys)
 ├── requirements.txt           # Python dependencies
