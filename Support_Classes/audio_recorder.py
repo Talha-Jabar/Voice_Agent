@@ -5,7 +5,7 @@ from pydub import AudioSegment, silence
 import os
 
 class AudioRecorder:
-    def __init__(self, sample_rate=44100, channels=1, silence_thresh=-20, min_silence_len=500):
+    def __init__(self, sample_rate=44100, channels=1, silence_thresh=-16, min_silence_len=500):
         self.sample_rate = sample_rate
         self.channels = channels
         self.silence_thresh = silence_thresh   # in dB
@@ -13,7 +13,7 @@ class AudioRecorder:
         self.max_retries = 3
         # Removed unused attributes: recording, audio_data
 
-    def record_audio(self, duration=10, filename="user_input.wav"):
+    def record_audio(self, duration=5, filename="user_input.wav"):
         """Record audio for a specified duration and save to file"""
         print(f"Recording for {duration} seconds...")
         
@@ -42,7 +42,7 @@ class AudioRecorder:
         )
         return len(non_silent_ranges) == 0
 
-    def record_until_silence(self, filename="user_input.wav", rms_silence_threshold=0.01, silence_duration=5, max_duration=60):
+    def record_until_silence(self, filename="user_input.wav", rms_silence_threshold=0.01, silence_duration=3, max_duration=5):
         """Record until silence is detected, retry if completely silent"""
         retries = 0
         while retries < self.max_retries:
