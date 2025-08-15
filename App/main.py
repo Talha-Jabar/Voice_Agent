@@ -1,5 +1,8 @@
 import os
 from dotenv import load_dotenv
+import sys
+
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 from Core_Functionality.speech_to_text import transcribe_audio
 from Core_Functionality.text_to_speech import generate_speech
