@@ -1,0 +1,99 @@
+[
+    {
+        "customer_id": "CUST001",
+        "name": "Alice Johnson",
+        "product(s)": [
+            "Organic Apples",
+            "Whole Wheat Bread"
+        ],
+        "order_id": "ORD1001",
+        "location": "New York, NY",
+        "price": 35.5,
+        "paid_status": "paid",
+        "payment_method": "credit_card",
+        "complain": "",
+        "complain_id": "",
+        "status": "delivered",
+        "sentiment": "positive",
+        "review": "",
+        "conversation_history": "agent: Hello, this is Smith from RichDaddy Incorporation. How are you doing today, Alice Johnson?\nuser: I am fine, what about you\nagent: Hello, Alice! I'm glad to hear that you're doing well. I'm here to follow up with you about your recent order (Order ID: ORD1001) for Organic Apples and Whole Wheat Bread. \n\nI can confirm that your order has been delivered to New York, NY, and the payment has been processed successfully. \n\nIs there anything specific you would like to discuss regarding your order, or do you have any concerns or feedback?\nuser: The products were good, i am satisfied with your service\nagent: Thank you for your kind words, Alice! I'm thrilled to hear that you were satisfied with our products and service. Your feedback means a lot to us.\n\nIf there's anything else I can assist you with today, such as updating your information or making another order, please let me know!\nuser: no that's it. See you again\nagent: Thank you, Alice! I'm glad I could assist you today. If you ever need anything in the future or have any questions, don't hesitate to reach out. Have a wonderful day, and we look forward to serving you again! Goodbye!",
+        "last_contact": "2025-08-08 10:30:00"
+    },
+    {
+        "customer_id": "CUST002",
+        "name": "Bob Williams",
+        "product(s)": [
+            "Almond Milk",
+            "Granola Bars"
+        ],
+        "order_id": "ORD1002",
+        "location": "Los Angeles, CA",
+        "price": 22.0,
+        "paid_status": "pending",
+        "payment_method": "paypal",
+        "complain": "",
+        "complain_id": "",
+        "status": "shipped",
+        "sentiment": "",
+        "review": "",
+        "conversation_history": []
+    },
+    {
+        "customer_id": "CUST003",
+        "name": "Charlie Brown",
+        "product(s)": [
+            "Greek Yogurt",
+            "Fresh Berries"
+        ],
+        "order_id": "ORD1003",
+        "location": "Chicago, IL",
+        "price": 15.75,
+        "paid_status": "paid",
+        "payment_method": "debit_card",
+        "complain": "",
+        "complain_id": "",
+        "status": "delivered",
+        "sentiment": "",
+        "review": "",
+        "conversation_history": []
+    },
+    {
+        "customer_id": "CUST004",
+        "name": "Diana Miller",
+        "product(s)": [
+            "Chicken Breast",
+            "Organic Broccoli"
+        ],
+        "order_id": "ORD1004",
+        "location": "Houston, TX",
+        "price": 45.0,
+        "paid_status": "paid",
+        "payment_method": "credit_card",
+        "complain": "",
+        "complain_id": "",
+        "status": "delivered",
+        "sentiment": "",
+        "review": "",
+        "conversation_history": []
+    },
+    {
+        "customer_id": "CUST005",
+        "name": "Ethan Davis",
+        "product(s)": [
+            "Pasta",
+            "Tomato Sauce",
+            "Parmesan Cheese"
+        ],
+        "order_id": "ORD1005",
+        "location": "Phoenix, AZ",
+        "price": 12.5,
+        "paid_status": "pending",
+        "payment_method": "cash_on_delivery",
+        "complain": "",
+        "complain_id": "",
+        "status": "processing",
+        "sentiment": "",
+        "review": "",
+        "conversation_history": []
+    }
+]
