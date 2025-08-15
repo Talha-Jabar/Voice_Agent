@@ -7,6 +7,15 @@ from langchain.memory import ConversationBufferMemory
 from Database.customer_database import get_customer_by_id, update_customer_data, get_random_customer
 from Support_Classes.conversation_manager import ConversationManager
 import json
+from pydantic import Field, BaseModel
+from typing import Optional, List, Union
+
+class UpdateCustomerDetailsInput(BaseModel):
+        customer_id: str = Field(..., description="The customer ID to update")
+        field_to_update: Optional[str] = Field(None, description="The field to update (location, payment_method, etc.)")
+        new_value: Optional[Union[str, List[str]]] = Field(None, description="The new value for the field")
+        json_input: Optional[str] = Field(None, description="Alternative JSON input containing all parameters")
+
 
 class VoiceAgentOrchestrator:
     def __init__(self, openai_api_key):
@@ -26,6 +35,7 @@ class VoiceAgentOrchestrator:
             if customer:
                 return json.dumps(customer, indent=2)
             return "Customer not found"
+        
 
         def update_customer_info(customer_id: str, updates: str) -> str:
             """Update customer information"""
@@ -47,7 +57,52 @@ class VoiceAgentOrchestrator:
             }
             success = update_customer_data(customer_id, update_data)
             return f"Complaint recorded with ID: {complaint_id}" if success else "Failed to record complaint"
+        
+        # In langchain_agent.py, within the setup_tools method, add this new tool:
 
+        def update_customer_details(
+            customer_id: str,
+                field_to_update: Optional[str] = None,
+                new_value: Optional[Union[str, List[str]]] = None,
+                json_input: Optional[str] = None
+            ) -> str:
+            """Update specific customer details like location, payment method, or products."""
+            allowed_fields = [
+                "location", "payment_method", "product(s)", 
+                "name", "paid_status", "status"
+            ]
+            
+            try:
+                # Handle JSON input if provided
+                if json_input:
+                    try:
+                        data = json.loads(json_input)
+                        customer_id = data.get("customer_id", customer_id)
+                        field_to_update = data.get("field_to_update", field_to_update)
+                        new_value = data.get("new_value", new_value)
+                    except json.JSONDecodeError:
+                        return "Error: Invalid JSON format for update data"
+                
+                if not field_to_update or not new_value:
+                    return "Error: Must provide either field_to_update and new_value parameters or valid json_input"
+                
+                if field_to_update not in allowed_fields:
+                    return f"Error: Cannot update {field_to_update}. Allowed fields: {', '.join(allowed_fields)}"
+                
+                # Handle special cases
+                if field_to_update == "product(s)":
+                    if not isinstance(new_value, list):
+                        new_value = [new_value]
+                
+                update_data = {field_to_update: new_value}
+                success = update_customer_data(customer_id, update_data)
+                
+                if success:
+                    return f"Successfully updated {field_to_update} to {new_value}"
+                return "Failed to update customer details"
+            except Exception as e:
+                return f"Error: {str(e)}"
+        
         def get_conversation_history() -> str:
             """Get current conversation history"""
             history = self.conversation_manager.get_history()
@@ -64,6 +119,15 @@ class VoiceAgentOrchestrator:
                 description="Update customer information with new data",
                 func=update_customer_info
             ),
+            Tool(
+                name="update_customer_details",
+                description="""Update specific customer details like location, payment method, or products. "
+                            "Input can be either three parameters (customer_id, field_to_update, new_value) "
+                            "or a JSON string with these fields in json_input parameter.""",
+                func=update_customer_details,
+                args_schema=UpdateCustomerDetailsInput 
+            ),
+
             Tool(
                 name="add_complaint",
                 description="Add a complaint for a customer",
@@ -87,13 +151,26 @@ class VoiceAgentOrchestrator:
             2. Confirm order details and delivery information
             3. Address any complaints or concerns
             4. Update customer records as needed
-            5. Maintain a helpful and empathetic tone
+            5. Change customer information if the relevant customer asks for it
+            6. Maintain a helpful and empathetic tone
+            
+            When successfully updating customer information:
+            - First confirm the update was successful
+            - Then ask if there's anything else you can help with
+            - Before it seems customer have asked all their questions or requests then take review from the customer about the relative product.
             
             Available tools:
             - get_customer_info: Get customer details by ID
             - update_customer_info: Update customer information
+            - update_customer_details: Update specific fields like location, payment method, or products
             - add_complaint: Record customer complaints
             - get_conversation_history: View conversation history
+            
+            When updating customer details:
+            - Verify the changes with the customer before applying them
+            - For payment method changes, confirm the new payment details
+            - For location changes, verify the new address
+            - For product changes, check availability first
             
             Always be polite, professional, and solution-oriented. If a customer has a complaint, 
             acknowledge it, gather details, and work toward a resolution."""),
@@ -134,7 +211,6 @@ class VoiceAgentOrchestrator:
         """Process user input through the LangChain agent"""
         self.conversation_manager.add_message("user", user_input)
         
-        # Add customer context to the input
         if not self.current_customer:
             error_response = "No customer is currently selected. Please start a conversation first."
             self.conversation_manager.add_message("agent", error_response)
@@ -147,10 +223,19 @@ class VoiceAgentOrchestrator:
         try:
             response = self.agent_executor.invoke({"input": context})
             agent_response = response["output"]
+            
+            # Check if the response indicates a successful update
+            if "successfully updated" in agent_response.lower():
+                agent_response += "\n\nIs there anything else I can help you with today?"
+                
             self.conversation_manager.add_message("agent", agent_response)
             return agent_response
         except Exception as e:
-            error_response = "I apologize, but I'm having some technical difficulties. Could you please repeat that?"
+            # Only show technical difficulties message for unexpected errors
+            if "error" in str(e).lower():
+                error_response = "I apologize, but I'm having some technical difficulties. Could you please repeat that?"
+            else:
+                error_response = "Thank you for that information. Is there anything else I can help you with today?"
             self.conversation_manager.add_message("agent", error_response)
             return error_response
 
