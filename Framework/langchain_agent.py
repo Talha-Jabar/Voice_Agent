@@ -61,11 +61,12 @@ class VoiceAgentOrchestrator:
         # In langchain_agent.py, within the setup_tools method, add this new tool:
 
         def update_customer_details(
+                
             customer_id: str,
-                field_to_update: Optional[str] = None,
-                new_value: Optional[Union[str, List[str]]] = None,
-                json_input: Optional[str] = None
-            ) -> str:
+            field_to_update: Optional[str] = None,
+            new_value: Optional[Union[str, List[str]]] = None,
+            json_input: Optional[str] = None
+        ) -> str:
             """Update specific customer details like location, payment method, or products."""
             allowed_fields = [
                 "location", "payment_method", "product(s)", 
