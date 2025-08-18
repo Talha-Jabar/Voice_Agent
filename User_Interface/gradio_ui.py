@@ -3,9 +3,7 @@ from elevenlabs import ElevenLabs
 import os
 from dotenv import load_dotenv
 import sys
-import json
-import threading
-import time
+
 import numpy as np
 import soundfile as sf
 from pydub import AudioSegment
@@ -16,7 +14,6 @@ import tempfile
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 from Core_Functionality.speech_to_text import transcribe_audio
-from Core_Functionality.text_to_speech import generate_speech
 from Framework.langchain_agent import VoiceAgentOrchestrator
 from Utils.utils import detect_termination_intent
 
