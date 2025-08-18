@@ -52,6 +52,7 @@ def run_ai_voice_agent():
     
     # Generate speech for greeting
     try:
+        speech_output_path = "./agent_greeting.mp3"
         generate_speech(greeting, ELEVENLABS_VOICE_ID)
     except Exception as e:
         print(f"Warning: Could not generate speech: {e.body}") # type: ignore
@@ -85,6 +86,7 @@ def run_ai_voice_agent():
                 farewell = "Thank you for your time. Have a great day!"
                 print(f"Agent: {farewell}")
                 try:
+                    speech_output_path = "./farewell.mp3"
                     generate_speech(farewell, ELEVENLABS_VOICE_ID)
                 except Exception as e:
                     print(f"Warning: Could not generate speech: {e.body}") # type: ignore
@@ -97,6 +99,7 @@ def run_ai_voice_agent():
             
             # Generate speech response
             try:
+                speech_output_path = "./agent_response.mp3"
                 generate_speech(response, ELEVENLABS_VOICE_ID)
             except Exception as e:
                 print(f"Warning: Could not generate speech: {e.body}")  # type: ignore
@@ -109,6 +112,7 @@ def run_ai_voice_agent():
             error_response = "I apologize, but I'm experiencing some technical difficulties. Could you please try again?"
             print(f"Agent: {error_response}")
             try:
+                speech_output_path = "./error_response.mp3"
                 generate_speech(error_response, ELEVENLABS_VOICE_ID)
             except:
                 pass
