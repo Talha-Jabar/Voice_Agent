@@ -7,6 +7,7 @@ import sys
 import numpy as np
 import soundfile as sf
 from pydub import AudioSegment
+from pydub.effects import normalize
 from pydub.silence import split_on_silence
 import tempfile
 
@@ -103,7 +104,7 @@ def preprocess_audio(audio_data, sample_rate):
                 processed_audio += AudioSegment.silent(duration=100)
         
         # Normalize audio levels
-        processed_audio = processed_audio.normalize()
+        processed_audio = normalize(processed_audio)
         
         # Convert back to numpy array
         samples = processed_audio.get_array_of_samples()
@@ -421,7 +422,7 @@ def clear_all():
     return [], None, "", "", gr.Button("🎤 Start Recording", interactive=False)
 
 # Create Gradio Interface
-with gr.Blocks(theme=gr.themes.Soft(), title="AI Voice Agent") as demo:
+with gr.Blocks(theme=gr.themes.Soft(), title="AI Voice Agent") as demo: # type: ignore
     gr.Markdown("# 🎙️ AI Voice Agent for Support Follow-Up")
     gr.Markdown("""
     **Instructions:**
