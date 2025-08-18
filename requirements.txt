@@ -1,5 +1,5 @@
 openai>=1.0.0
-elevenlabs>=0.2.0
+elevenlabs>=1.6.2
 langchain>=0.1.0
 langchain-openai>=0.1.0
 python-dotenv>=1.0.0
@@ -9,5 +9,5 @@ sounddevice>=0.4.6
 numpy>=1.24.0
 scipy>=1.16.0
 gradio>=5.42.0
-pydub
-soundfile
+pydub>=0.25.1
+soundfile>=0.12.1
