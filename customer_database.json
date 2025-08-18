@@ -16,7 +16,7 @@
         "status": "delivered",
         "sentiment": "positive",
         "review": "",
-        "conversation_history": "agent: Hello, this is Smith from RichDaddy Incorporation. How are you doing today, Alice Johnson?\nuser: I am fine, what about you\nagent: Hello, Alice! I'm glad to hear that you're doing well. I'm here to follow up with you about your recent order (Order ID: ORD1001) for Organic Apples and Whole Wheat Bread. \n\nI can confirm that your order has been delivered to New York, NY, and the payment has been processed successfully. \n\nIs there anything specific you would like to discuss regarding your order, or do you have any concerns or feedback?\nuser: The products were good, i am satisfied with your service\nagent: Thank you for your kind words, Alice! I'm thrilled to hear that you were satisfied with our products and service. Your feedback means a lot to us.\n\nIf there's anything else I can assist you with today, such as updating your information or making another order, please let me know!\nuser: no that's it. See you again\nagent: Thank you, Alice! I'm glad I could assist you today. If you ever need anything in the future or have any questions, don't hesitate to reach out. Have a wonderful day, and we look forward to serving you again! Goodbye!",
+        "conversation_history": "agent: Hello, this is Smith from RichDaddy Incorporation. How are you doing today, Alice Johnson?\nuser: Hello and I'm fine, what about you?\nagent: Hello Alice! I'm glad to hear that you're doing well. I'm doing great, thank you for asking! I'm calling to follow up on your recent order (Order ID: ORD1001) and to ensure everything went smoothly. \n\nCould you please confirm the order details and the delivery information for me?\nuser: Yes, everything went fine, the polar plasco will have a moment's peace with it. Thank you very much.\nagent: I'm delighted to hear that everything went well with your order, Alice! It sounds like the polar plasco will certainly enjoy it. \n\nIf there\u2019s anything else you would like to discuss or if you have any concerns or questions, please let me know! Also, would you be willing to share your thoughts about the product? Your feedback is very valuable to us.\nuser: Yes, the product was good.\nagent: Thank you for your feedback, Alice! I'm glad to hear that you were satisfied with the product. \n\nIs there anything else I can assist you with today? If you have any other questions or need to update your information, feel free to let me know!",
         "last_contact": "2025-08-08 10:30:00"
     },
     {
@@ -92,8 +92,9 @@
         "complain": "",
         "complain_id": "",
         "status": "processing",
-        "sentiment": "",
+        "sentiment": "neutral",
         "review": "",
-        "conversation_history": []
+        "conversation_history": "agent: Hello, this is Smith from RichDaddy Incorporation. How are you doing today, Bob Williams?\nagent: Hello, this is Smith from RichDaddy Incorporation. How are you doing today, Ethan Davis?\nuser: I am fine what about you\nagent: Hello Ethan! I'm glad to hear that you're doing fine. I'm here to follow up on your order with ID ORD1005. \n\nYour order includes:\n- Pasta\n- Tomato Sauce\n- Parmesan Cheese\n\nIt is currently in processing status, and the payment method is cash on delivery. \n\nIs the delivery address still Phoenix, AZ? And is there anything specific you would like to discuss about your order today?\nuser: Yes the delivery address is the same\nagent: Thank you for confirming that, Ethan! Your delivery address is still set to Phoenix, AZ. \n\nIs there anything else you would like to discuss regarding your order, or any concerns you'd like to raise?\nuser: How much time it will take to receive my order\nagent: Typically, our delivery takes between 3 to 5 business days, depending on your location and the time of your order. Since your order is currently being processed, you can expect it to arrive soon.\n\nIf you have any specific concerns about the timing or need assistance with anything else regarding your order, please let me know!",
+        "last_contact": "2025-08-08 10:30:00"
     }
 ]

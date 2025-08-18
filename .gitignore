@@ -2,6 +2,7 @@
 __pycache__/
 voice_agent
 .vscode
+.gradio
 user_input.wav
 customer_database.json
 agent_greeting.mp3
